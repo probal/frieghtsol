@@ -1,6 +1,9 @@
 package com.freightsol.freightsol.filters;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.freightsol.freightsol.config.AppConfiguration;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
@@ -10,6 +13,9 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.Key;
 import java.security.SignatureException;
@@ -32,28 +38,63 @@ public class AuthenticationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         System.out.println("Thru auth filter....");
+        if (servletRequest instanceof HttpServletRequest) {
 
+            HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
 
+            if (httpRequest.getRequestURI().startsWith("/api/v1/login")) {
+                filterChain.doFilter(servletRequest, servletResponse);
+            } else {
+                String jwttoken = "";
+                Cookie[] cookies = ((HttpServletRequest) servletRequest).getCookies();
+                if (cookies != null) {
+                    for (Cookie cookie : cookies) {
+                        if ("jwttoken".equalsIgnoreCase(cookie.getName())) {
+                            jwttoken = cookie.getValue();
+                        }
+                    }
+                }
 
-        String compactJws = Jwts.builder()
-                .setSubject("Joe")
-                .signWith(SignatureAlgorithm.HS512, appConfiguration.getJwtSecret().getBytes("UTF-8"))
-                .compact();
-        try {
+                try {
+                    Claims claims = Jwts.parser().setSigningKey(appConfiguration.getJwtSecret().getBytes("UTF-8")).parseClaimsJws(jwttoken).getBody();
 
-            Jwts.parser().setSigningKey(appConfiguration.getJwtSecret().getBytes("UTF-8")).parseClaimsJws(compactJws);
+                    ObjectMapper mapper = new ObjectMapper();
+                    JsonNode jsonNode = mapper.readTree(claims.get("user").toString());
 
+                    System.out.println(jsonNode.get("fullName"));
+                } catch (Exception e) {
 
+                }
 
-        } catch (Exception e) {
-
+                if(jwttoken.isEmpty()){
+                    sendErrorResponse((HttpServletResponse) servletResponse, HttpServletResponse.SC_UNAUTHORIZED, "No User !!!");
+                    return;
+                }
+                filterChain.doFilter(servletRequest, servletResponse);
+            }
         }
 
-        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override
     public void destroy() {
+
+    }
+
+    public void sendErrorResponse(HttpServletResponse servletResponse, int status, String message){
+        servletResponse.setStatus(status);
+        try {
+            servletResponse.getWriter().write(message);
+        }catch (Exception e){
+
+        }
+        finally {
+            try {
+                servletResponse.getWriter().close();
+            }catch (Exception e){
+
+            }
+        }
 
     }
 }

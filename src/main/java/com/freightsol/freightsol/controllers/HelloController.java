@@ -34,7 +34,6 @@ public class HelloController {
         PersonModel pm = new PersonModel();
         pm.setFirstName("Probal");
         pm.setLastName("Sikder");
-        System.out.println(appConfiguration.getAppUrl());
         return pm;
     }
 
