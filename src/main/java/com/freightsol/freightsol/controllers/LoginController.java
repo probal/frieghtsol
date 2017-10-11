@@ -43,9 +43,8 @@ public class LoginController {
 
             if(userName.equalsIgnoreCase("probal") && password.equalsIgnoreCase("probal")) {
                 PersonModel pm = new PersonModel();
-                pm.setFirstName(userName);
+                pm.setName(userName);
                 pm.setEmail("abc@dmd.com");
-                pm.setPhoneNumber("123131321");
                 UserToken userToken = new UserToken(pm);
                 CommonUtils.setUserToken(response, userToken, appConfiguration);
                 return new ResponseEntity<UserToken>(userToken, HttpStatus.OK);

@@ -9,6 +9,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +31,7 @@ public class HelloController {
     @Autowired
     private PersonRepository personRepository;
 
+    @CacheEvict(value = "persons", allEntries = true)
     @ApiOperation(value = "Test this api",response = PersonModel.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully done"),
@@ -44,6 +48,7 @@ public class HelloController {
         return personRepository.save(person);
     }
 
+    @Cacheable("persons")
     @ApiOperation(value = "Test this api",response = PersonModel.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully done"),
@@ -51,8 +56,14 @@ public class HelloController {
     })
     @RequestMapping(value = "/list", method= RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    Iterable<Person> getList() {
-        return personRepository.findAll();
+    Page<Person> getList(Pageable pageable) {
+        //http://localhost:8000/api/v1/hello/list?page=3&size=2&sort=id
+        try{
+            Thread.sleep(2000L);
+        }catch (Exception e) {
+
+        }
+        return personRepository.findAll(pageable);
     }
 
 }

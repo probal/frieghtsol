@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
  */
 public class UserToken {
 
-    private String fullName;
+    private String name;
 
     private String email;
 
@@ -19,19 +19,18 @@ public class UserToken {
     }
 
     public UserToken(PersonModel pm) {
-        this.fullName = pm.getFirstName();
+        this.name = pm.getName();
         this.email = pm.getEmail();
-        this.phoneNumber = pm.getPhoneNumber();
         DateTime createdOn = new DateTime();
         this.issuedOn = createdOn.getMillis();
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

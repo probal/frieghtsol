@@ -61,7 +61,7 @@ public class AuthenticationFilter implements Filter {
                     ObjectMapper mapper = new ObjectMapper();
                     JsonNode jsonNode = mapper.readTree(claims.get("user").toString());
 
-                    System.out.println(jsonNode.get("fullName"));
+                    System.out.println(jsonNode.get("name"));
                 } catch (Exception e) {
 
                 }
