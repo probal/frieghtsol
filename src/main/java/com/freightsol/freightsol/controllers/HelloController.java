@@ -4,6 +4,8 @@ import com.freightsol.freightsol.config.AppConfiguration;
 import com.freightsol.freightsol.db.entities.Person;
 import com.freightsol.freightsol.db.repositories.PersonRepository;
 import com.freightsol.freightsol.models.PersonModel;
+import com.freightsol.freightsol.models.UserAuth;
+import com.freightsol.freightsol.models.UserToken;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -31,6 +33,9 @@ public class HelloController {
     @Autowired
     private PersonRepository personRepository;
 
+    @Autowired
+    private UserAuth userAuth;
+
     @CacheEvict(value = "persons", allEntries = true)
     @ApiOperation(value = "Test this api",response = PersonModel.class)
     @ApiResponses(value = {
@@ -57,7 +62,8 @@ public class HelloController {
     @RequestMapping(value = "/list", method= RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     Page<Person> getList(Pageable pageable) {
-        //http://localhost:8000/api/v1/hello/list?page=3&size=2&sort=id
+        //http://localhost:8000/api/v1/hello/list?page=0&size=2&sort=id,desc
+        System.out.println(userAuth.getUserToken().getName());
         try{
             Thread.sleep(2000L);
         }catch (Exception e) {

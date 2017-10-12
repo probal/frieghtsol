@@ -1,10 +1,16 @@
 package com.freightsol.freightsol.models;
 
 import org.joda.time.DateTime;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
 
 /**
  * Created by probal on 10/10/17.
  */
+@RequestScope
+@Component
 public class UserToken {
 
     private String name;

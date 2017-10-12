@@ -3,6 +3,8 @@ package com.freightsol.freightsol.filters;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.freightsol.freightsol.config.AppConfiguration;
+import com.freightsol.freightsol.models.UserAuth;
+import com.freightsol.freightsol.models.UserToken;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -30,6 +32,9 @@ public class AuthenticationFilter implements Filter {
     @Autowired
     AppConfiguration appConfiguration;
 
+    @Autowired
+    UserAuth userAuth;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -37,7 +42,6 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("Thru auth filter....");
         if (servletRequest instanceof HttpServletRequest) {
 
             HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
@@ -57,11 +61,12 @@ public class AuthenticationFilter implements Filter {
 
                 try {
                     Claims claims = Jwts.parser().setSigningKey(appConfiguration.getJwtSecret().getBytes("UTF-8")).parseClaimsJws(jwttoken).getBody();
-
                     ObjectMapper mapper = new ObjectMapper();
                     JsonNode jsonNode = mapper.readTree(claims.get("user").toString());
-
-                    System.out.println(jsonNode.get("name"));
+                    UserToken userToken = new UserToken();
+                    userToken.setName(jsonNode.get("name").asText());
+                    userAuth.setUserToken(userToken);
+                    System.out.println(userToken.getName() + " requesting...");
                 } catch (Exception e) {
 
                 }
