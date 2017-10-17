@@ -24,7 +24,7 @@ import java.util.Iterator;
  */
 @RestController
 @RequestMapping("api/v1/hello")
-@Api(value="hello", description="This is test controller")
+@Api(value="hello", description="This is Hello controller")
 public class HelloController {
 
     @Autowired
@@ -63,7 +63,6 @@ public class HelloController {
     public @ResponseBody
     Page<Person> getList(Pageable pageable) {
         //http://localhost:8000/api/v1/hello/list?page=0&size=2&sort=id,desc
-        System.out.println(userAuth.getUserToken().getName());
         try{
             Thread.sleep(2000L);
         }catch (Exception e) {

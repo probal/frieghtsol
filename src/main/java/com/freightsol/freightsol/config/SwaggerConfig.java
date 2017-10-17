@@ -32,7 +32,7 @@ public class SwaggerConfig {
                 "FS REST API for Online Services",
                 "1.0",
                 "Terms of service",
-                new Contact("Admin", "http://google.com", "probalsikder@gmail.com"),
+                new Contact("Probal Sikder", "mailto:probalsikder@gmail.com", "probalsikder@gmail.com"),
                 "Apache License Version 2.0",
                 "https://www.apache.org/licenses/LICENSE-2.0");
         return apiInfo;

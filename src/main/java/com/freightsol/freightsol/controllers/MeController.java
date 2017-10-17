@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("api/v1/me")
-@Api(value="me", description="This is me controller")
+@Api(value="me", description="This is me controller to translate the JWT")
 public class MeController {
 
     @Autowired

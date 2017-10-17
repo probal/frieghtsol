@@ -20,4 +20,5 @@ public class FreightsolApplication {
 	public static void main(String[] args) {
         SpringApplication.run(FreightsolApplication.class, args);
 	}
+
 }

@@ -46,8 +46,11 @@ public class AuthenticationFilter implements Filter {
 
             HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
 
-            if (httpRequest.getRequestURI().startsWith("/api/v1/login")) {
+            if (httpRequest.getRequestURI().startsWith("/api/v1/login")
+                || httpRequest.getRequestURI().startsWith("/api/v1/logout")) {
+
                 filterChain.doFilter(servletRequest, servletResponse);
+
             } else {
                 String jwttoken = "";
                 Cookie[] cookies = ((HttpServletRequest) servletRequest).getCookies();
@@ -69,7 +72,6 @@ public class AuthenticationFilter implements Filter {
                     userToken.setPhoneNumber(jsonNode.get("phoneNumber").asText());
                     userToken.setIssuedOn(jsonNode.get("issuedOn").asLong());
                     userAuth.setUserToken(userToken);
-                    System.out.println(userToken.getName() + " requesting...");
                 } catch (Exception e) {
 
                 }

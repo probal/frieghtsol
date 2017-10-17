@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 @RequestMapping("api/v1/login")
-@Api(value="login", description="This is login controller")
+@Api(value="login", description="Login controller")
 public class LoginController {
 
     @Autowired
