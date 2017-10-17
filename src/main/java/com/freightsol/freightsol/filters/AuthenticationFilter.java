@@ -65,6 +65,9 @@ public class AuthenticationFilter implements Filter {
                     JsonNode jsonNode = mapper.readTree(claims.get("user").toString());
                     UserToken userToken = new UserToken();
                     userToken.setName(jsonNode.get("name").asText());
+                    userToken.setEmail(jsonNode.get("email").asText());
+                    userToken.setPhoneNumber(jsonNode.get("phoneNumber").asText());
+                    userToken.setIssuedOn(jsonNode.get("issuedOn").asLong());
                     userAuth.setUserToken(userToken);
                     System.out.println(userToken.getName() + " requesting...");
                 } catch (Exception e) {

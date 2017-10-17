@@ -27,6 +27,7 @@ public class UserToken {
     public UserToken(PersonModel pm) {
         this.name = pm.getName();
         this.email = pm.getEmail();
+        this.phoneNumber = "1234566";
         DateTime createdOn = new DateTime();
         this.issuedOn = createdOn.getMillis();
     }
