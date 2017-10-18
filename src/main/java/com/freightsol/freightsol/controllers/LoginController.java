@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("api/v1/login")
 @Api(value="login", description="Login controller")
 public class LoginController {
+
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     AppConfiguration appConfiguration;
@@ -46,6 +50,7 @@ public class LoginController {
                 pm.setEmail("abc@dmd.com");
                 UserToken userToken = new UserToken(pm);
                 CommonUtils.setUserToken(response, userToken, appConfiguration);
+                logger.info(userName + " logged in...");
                 return new ResponseEntity<UserToken>(userToken, HttpStatus.OK);
         } catch (Exception ex) {
             System.out.println("Exceptoion occured");

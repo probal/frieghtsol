@@ -37,7 +37,7 @@ public class LogoutController {
             @ApiResponse(code = 200, message = "Successfully done"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource")
     })
-    @RequestMapping(method= RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/doLogout", method= RequestMethod.GET, produces = "application/json")
     public ResponseEntity doLogout(@RequestParam(value = "callback", required = false) String callback) throws Exception {
             servletResponse.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
             servletResponse.setHeader("Pragma", "no-cache");
