@@ -17,7 +17,7 @@ public class FilterConfiguration {
         filterRegBean.setFilter(new AuthenticationFilter());
         filterRegBean.addUrlPatterns("/*");
         filterRegBean.setEnabled(Boolean.TRUE);
-        filterRegBean.setName("Authentication Filter");
+        filterRegBean.setName("Customised Authentication Filter");
         filterRegBean.setAsyncSupported(Boolean.TRUE);
         return filterRegBean;
     }

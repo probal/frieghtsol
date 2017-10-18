@@ -4,6 +4,7 @@ import com.freightsol.freightsol.Utils.CommonUtils;
 import com.freightsol.freightsol.config.AppConfiguration;
 import com.freightsol.freightsol.models.PersonModel;
 import com.freightsol.freightsol.models.UserToken;
+import com.freightsol.freightsol.services.MailSenderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -32,6 +33,9 @@ public class LoginController {
     @Autowired
     AppConfiguration appConfiguration;
 
+    @Autowired
+    MailSenderService mailSenderService;
+
 
     @ApiOperation(value = "Login with this api",response = PersonModel.class)
     @ApiResponses(value = {
@@ -42,17 +46,21 @@ public class LoginController {
     public ResponseEntity<UserToken> doLogin(HttpServletRequest request,
                                              HttpServletResponse response,
                                              @RequestParam("userName") String userName,
-                                             @RequestParam("password") String password) {
+                                             @RequestParam("email") String email) {
         try {
 
-                PersonModel pm = new PersonModel();
-                pm.setName(userName);
-                pm.setEmail("abc@dmd.com");
-                UserToken userToken = new UserToken(pm);
-                CommonUtils.setUserToken(response, userToken, appConfiguration);
-                logger.info("{} logged in...", userName);
-                return new ResponseEntity<UserToken>(userToken, HttpStatus.OK);
+            PersonModel pm = new PersonModel();
+            pm.setName(userName);
+            pm.setEmail(email);
+
+            mailSenderService.sendLoginAlert(email, userName);
+
+            UserToken userToken = new UserToken(pm);
+            CommonUtils.setUserToken(response, userToken, appConfiguration);
+            logger.info("{} logged in...", userName);
+            return new ResponseEntity<UserToken>(userToken, HttpStatus.OK);
         } catch (Exception ex) {
+            ex.printStackTrace();
             System.out.println("Exceptoion occured");
         }
         return new ResponseEntity<UserToken>(HttpStatus.NOT_FOUND);

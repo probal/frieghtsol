@@ -25,8 +25,6 @@ import java.security.SignatureException;
 /**
  * Created by probal on 10/10/17.
  */
-@Component
-@Order(Ordered.HIGHEST_PRECEDENCE)
 public class AuthenticationFilter implements Filter {
 
     @Autowired
