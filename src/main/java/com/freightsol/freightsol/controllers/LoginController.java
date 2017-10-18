@@ -50,7 +50,7 @@ public class LoginController {
                 pm.setEmail("abc@dmd.com");
                 UserToken userToken = new UserToken(pm);
                 CommonUtils.setUserToken(response, userToken, appConfiguration);
-                logger.info(userName + " logged in...");
+                logger.info("{} logged in...", userName);
                 return new ResponseEntity<UserToken>(userToken, HttpStatus.OK);
         } catch (Exception ex) {
             System.out.println("Exceptoion occured");
