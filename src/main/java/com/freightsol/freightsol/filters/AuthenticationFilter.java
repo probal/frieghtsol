@@ -25,6 +25,9 @@ import java.security.SignatureException;
 /**
  * Created by probal on 10/10/17.
  */
+@Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
+/*If its not a spring @Component Autowired beans would not get registered in standard bean factory*/
 public class AuthenticationFilter implements Filter {
 
     @Autowired
@@ -71,7 +74,7 @@ public class AuthenticationFilter implements Filter {
                     userToken.setIssuedOn(jsonNode.get("issuedOn").asLong());
                     userAuth.setUserToken(userToken);
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
 
                 if(jwttoken.isEmpty()){

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by probal on 10/17/17.
  */
 @RestController
-@RequestMapping("api/v1/me")
+@RequestMapping("api/v1/private/me")
 @Api(value="me", description="This is me controller to translate the JWT")
 public class MeController {
 

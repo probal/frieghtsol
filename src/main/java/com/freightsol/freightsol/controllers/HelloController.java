@@ -10,6 +10,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -23,9 +25,11 @@ import java.util.Iterator;
  * Created by probal on 10/9/17.
  */
 @RestController
-@RequestMapping("api/v1/hello")
+@RequestMapping("api/v1/private/hello")
 @Api(value="hello", description="This is Hello controller")
 public class HelloController {
+
+    private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
 
     @Autowired
     AppConfiguration appConfiguration;
@@ -63,11 +67,13 @@ public class HelloController {
     public @ResponseBody
     Page<Person> getList(Pageable pageable) {
         //http://localhost:8000/api/v1/hello/list?page=0&size=2&sort=id,desc
-        try{
+        UserToken userToken = userAuth.getUserToken();
+        try {
             Thread.sleep(2000L);
-        }catch (Exception e) {
-
+        } catch (Exception e) {
+            logger.error("{} faced error fetching list.", userToken.getName());
         }
+        logger.info("{} fetching list.", userToken.getName());
         return personRepository.findAll(pageable);
     }
 
