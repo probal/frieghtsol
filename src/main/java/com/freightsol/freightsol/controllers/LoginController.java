@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by probal on 10/10/17.
  */
 @RestController
-@RequestMapping("api/v1/login")
+@RequestMapping("api/v1/public/login")
 @Api(value="login", description="Login controller")
 public class LoginController {
 

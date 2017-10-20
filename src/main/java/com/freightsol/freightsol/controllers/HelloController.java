@@ -1,5 +1,6 @@
 package com.freightsol.freightsol.controllers;
 
+import com.freightsol.freightsol.Utils.HttpResponseUtils;
 import com.freightsol.freightsol.config.AppConfiguration;
 import com.freightsol.freightsol.db.entities.Person;
 import com.freightsol.freightsol.db.repositories.PersonRepository;
@@ -17,9 +18,13 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by probal on 10/9/17.
@@ -72,6 +77,7 @@ public class HelloController {
             Thread.sleep(2000L);
         } catch (Exception e) {
             logger.error("{} faced error fetching list.", userToken.getName());
+            HttpResponseUtils.getCustomHttpResponse("", new ArrayList<>(), HttpStatus.BAD_REQUEST);
         }
         logger.info("{} fetching list.", userToken.getName());
         return personRepository.findAll(pageable);
