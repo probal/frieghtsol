@@ -47,7 +47,7 @@ public class AuthenticationFilter implements Filter {
 
             HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
 
-            if (!httpRequest.getRequestURI().contains("/private")) {
+            if (httpRequest.getRequestURI().contains("/public/")) {
 
                 filterChain.doFilter(servletRequest, servletResponse);
 
