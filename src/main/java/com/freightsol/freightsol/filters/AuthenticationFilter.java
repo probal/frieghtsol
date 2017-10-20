@@ -47,8 +47,7 @@ public class AuthenticationFilter implements Filter {
 
             HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
 
-            if (httpRequest.getRequestURI().startsWith("/api/v1/login")
-                || httpRequest.getRequestURI().startsWith("/api/v1/logout")) {
+            if (!httpRequest.getRequestURI().contains("/private")) {
 
                 filterChain.doFilter(servletRequest, servletResponse);
 

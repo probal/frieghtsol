@@ -19,7 +19,7 @@
             </encoder>
             <file>${generalLogFile}</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.log</fileNamePattern>
+                <fileNamePattern>${logDirectory}/${generalLog}.%d{yyyy-MM-dd}.log</fileNamePattern>
                 <maxHistory>2</maxHistory>
             </rollingPolicy>
         </appender>
@@ -30,7 +30,7 @@
             </encoder>
             <file>${userActivityLogFile}</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                <fileNamePattern>${USER_ACTIVITY_LOG_FILE}.%d{yyyy-MM-dd}.log</fileNamePattern>
+                <fileNamePattern>${logDirectory}/${userActivity}.%d{yyyy-MM-dd}.log</fileNamePattern>
                 <maxHistory>2</maxHistory>
             </rollingPolicy>
         </appender>
