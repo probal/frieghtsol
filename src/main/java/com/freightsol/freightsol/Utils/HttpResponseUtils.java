@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.xml.ws.Response;
+
 /**
  * Created by probal on 10/17/17.
  */
@@ -18,14 +20,14 @@ public class HttpResponseUtils {
             return new ResponseEntity(new JSONPObject(callback, responseData), HttpStatus.OK);
         }
     }
-    /*public static Response getErrorResponse(String callback, Object responseData, Response.Status status) {
-        if(Strings.isNullOrEmpty(callback)){
-            return Response.status(status).entity(responseData).build();
-        }else{
-            return Response.status(status).entity(new JSONPObject(callback, responseData)).build();
+    public static ResponseEntity getCustomHttpResponse(String callback, Object responseData, HttpStatus status) {
+        if(Strings.isNullOrEmpty(callback)) {
+            return new ResponseEntity(responseData, status);
+        } else {
+            return new ResponseEntity(new JSONPObject(callback, responseData), status);
         }
     }
-
+/*
     public static Response getErrorResponse(String callback, Object responseData) {
         if(Strings.isNullOrEmpty(callback)){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(responseData).build();
