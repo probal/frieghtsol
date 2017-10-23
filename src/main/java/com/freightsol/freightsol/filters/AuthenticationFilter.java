@@ -62,6 +62,11 @@ public class AuthenticationFilter implements Filter {
                     }
                 }
 
+                if(jwttoken.isEmpty()) {
+                    sendErrorResponse((HttpServletResponse) servletResponse, HttpServletResponse.SC_UNAUTHORIZED, "No User !!!");
+                    return;
+                }
+
                 try {
                     Claims claims = Jwts.parser().setSigningKey(appConfiguration.getJwtSecret().getBytes("UTF-8")).parseClaimsJws(jwttoken).getBody();
                     ObjectMapper mapper = new ObjectMapper();
@@ -74,12 +79,10 @@ public class AuthenticationFilter implements Filter {
                     userAuth.setUserToken(userToken);
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
-
-                if(jwttoken.isEmpty()){
-                    sendErrorResponse((HttpServletResponse) servletResponse, HttpServletResponse.SC_UNAUTHORIZED, "No User !!!");
+                    sendErrorResponse((HttpServletResponse) servletResponse, HttpServletResponse.SC_UNAUTHORIZED, "Token failed to authenticate !!!");
                     return;
                 }
+
                 filterChain.doFilter(servletRequest, servletResponse);
             }
         }
