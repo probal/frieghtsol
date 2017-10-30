@@ -2,3 +2,16 @@
 *iml
 .idea
 /target
+
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime data
+*.pid
+.tmp
+
+###############
+.DS_Store
+node_modules
+#dist
