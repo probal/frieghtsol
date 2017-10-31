@@ -1,7 +1,7 @@
 {
-    "name": "vue-learn",
+    "name": "FreightSol",
     "version": "2.3.0",
-    "description": "Miraz vue",
+    "description": "Freight Solution",
     "scripts": {
         "start": "npm-run-all --sequential build start:dist",
         "dev": "webpack-dev-server --open --progress --profile --watch",

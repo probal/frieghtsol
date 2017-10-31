@@ -38,7 +38,7 @@ const config = {
         }),
         new HtmlWebpackPlugin({
             favicon: path.join(__dirname, 'src/favicon.ico'),
-            title: 'Miraz vue',
+            title: 'FreightSol',
             template: path.join(__dirname, 'src/index.html'), // template file
             inject: 'body',
             hash: false, // Generates a hash value for static resources

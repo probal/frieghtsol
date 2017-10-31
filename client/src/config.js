@@ -1,7 +1,7 @@
 export const API_ROOT = (process.env.NODE_ENV === 'production') ?
-    'https://api.jackhu.top/' :
-    'http://localhost:9000/'
+    'https://localhost:8000/' :
+    'http://localhost:8000/'
 
 export const CookieDomain = (process.env.NODE_ENV === 'production') ?
-    '.jackhu.top' :
+    '.freightsol.com' :
     ''
