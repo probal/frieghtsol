@@ -13,7 +13,7 @@ import { isLogin } from './utils/authService'
 Vue.use(Router)
 
 const router = new Router({
-    mode: 'history',
+    mode: 'hash',
     // scrollBehavior: true,  
     routes: [{
         path: '/',
