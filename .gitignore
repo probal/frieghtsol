@@ -14,5 +14,8 @@ npm-debug.log*
 ###############
 .DS_Store
 node_modules
-client/dist
+/client-dev/dist
 /static/freightsol
+/client-new
+/client
+
