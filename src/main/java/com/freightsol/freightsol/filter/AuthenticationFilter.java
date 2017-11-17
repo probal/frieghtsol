@@ -1,14 +1,12 @@
-package com.freightsol.freightsol.filters;
+package com.freightsol.freightsol.filter;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.freightsol.freightsol.config.AppConfiguration;
-import com.freightsol.freightsol.models.UserAuth;
-import com.freightsol.freightsol.models.UserToken;
+import com.freightsol.freightsol.model.UserAuth;
+import com.freightsol.freightsol.model.UserToken;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.impl.crypto.MacProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -19,8 +17,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.security.Key;
-import java.security.SignatureException;
 
 /**
  * Created by probal on 10/10/17.
@@ -47,7 +43,8 @@ public class AuthenticationFilter implements Filter {
 
             HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
 
-            if (httpRequest.getRequestURI().contains("/public/")) {
+            if (httpRequest.getRequestURI().contains("/api/v1/")
+                    && httpRequest.getRequestURI().contains("/public/")) {
 
                 filterChain.doFilter(servletRequest, servletResponse);
 

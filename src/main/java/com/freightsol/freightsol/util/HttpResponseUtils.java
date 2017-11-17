@@ -1,12 +1,9 @@
-package com.freightsol.freightsol.Utils;
+package com.freightsol.freightsol.util;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.common.base.Strings;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.xml.ws.Response;
 
 /**
  * Created by probal on 10/17/17.

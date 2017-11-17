@@ -48,7 +48,7 @@
 
         <!--Segregating special purpose log files-->
         <!--<logger name="com.freightsol.freightsol.controllers.{specificDomainPackage}" additivity="false" level="debug">-->
-        <logger name="com.freightsol.freightsol.controllers.LoginController" additivity="false" level="debug">
+        <logger name="com.freightsol.freightsol.controller.LoginController" additivity="false" level="debug">
             <appender-ref ref="userActivityAppender" />
         </logger>
 
@@ -86,7 +86,7 @@
             <appender-ref ref="rollingFile"/>
         </root>
 
-        <logger name="com.freightsol.freightsol.controllers.LoginController" additivity="false" level="debug">
+        <logger name="com.freightsol.freightsol.controller.LoginController" additivity="false" level="debug">
             <appender-ref ref="userActivityAppender" />
         </logger>
 

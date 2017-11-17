@@ -1,15 +1,14 @@
-package com.freightsol.freightsol.controllers;
+package com.freightsol.freightsol.controller;
 
-import com.freightsol.freightsol.Utils.CommonUtils;
+import com.freightsol.freightsol.util.CommonUtils;
 import com.freightsol.freightsol.config.AppConfiguration;
-import com.freightsol.freightsol.models.PersonModel;
-import com.freightsol.freightsol.models.UserToken;
-import com.freightsol.freightsol.services.MailSenderService;
+import com.freightsol.freightsol.model.PersonModel;
+import com.freightsol.freightsol.model.UserToken;
+import com.freightsol.freightsol.service.MailSenderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

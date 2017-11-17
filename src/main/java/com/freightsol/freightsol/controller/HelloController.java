@@ -1,12 +1,12 @@
-package com.freightsol.freightsol.controllers;
+package com.freightsol.freightsol.controller;
 
-import com.freightsol.freightsol.Utils.HttpResponseUtils;
+import com.freightsol.freightsol.util.HttpResponseUtils;
 import com.freightsol.freightsol.config.AppConfiguration;
 import com.freightsol.freightsol.db.entities.Person;
 import com.freightsol.freightsol.db.repositories.PersonRepository;
-import com.freightsol.freightsol.models.PersonModel;
-import com.freightsol.freightsol.models.UserAuth;
-import com.freightsol.freightsol.models.UserToken;
+import com.freightsol.freightsol.model.PersonModel;
+import com.freightsol.freightsol.model.UserAuth;
+import com.freightsol.freightsol.model.UserToken;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -18,19 +18,16 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by probal on 10/9/17.
  */
 @RestController
-@RequestMapping("api/v1/private/hello")
+@RequestMapping("api/v1/hello")
 @Api(value="hello", description="This is Hello controller")
 public class HelloController {
 

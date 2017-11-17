@@ -1,4 +1,4 @@
-package com.freightsol.freightsol.models;
+package com.freightsol.freightsol.model;
 
 /**
  * Created by probal on 10/10/17.

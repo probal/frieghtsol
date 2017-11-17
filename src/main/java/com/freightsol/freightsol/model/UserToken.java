@@ -1,10 +1,11 @@
-package com.freightsol.freightsol.models;
+package com.freightsol.freightsol.model;
 
+import com.freightsol.freightsol.model.auth.UserAccount;
 import org.joda.time.DateTime;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
+
+import java.util.Set;
 
 /**
  * Created by probal on 10/10/17.
@@ -13,11 +14,15 @@ import org.springframework.web.context.annotation.RequestScope;
 @Component
 public class UserToken {
 
+    private Long userId;
+
     private String name;
 
     private String email;
 
     private String phoneNumber;
+
+    private Set<String> modules;
 
     private long issuedOn;
 
@@ -28,6 +33,14 @@ public class UserToken {
         this.name = pm.getName();
         this.email = pm.getEmail();
         this.phoneNumber = "1234566";
+        DateTime createdOn = new DateTime();
+        this.issuedOn = createdOn.getMillis();
+    }
+
+    public UserToken(UserAccount userAccount) {
+        this.name = userAccount.getFullName();
+        this.email = userAccount.getEmail();
+        this.phoneNumber = userAccount.getMobileNumber();
         DateTime createdOn = new DateTime();
         this.issuedOn = createdOn.getMillis();
     }
@@ -62,5 +75,21 @@ public class UserToken {
 
     public void setIssuedOn(long issuedOn) {
         this.issuedOn = issuedOn;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Set<String> getModules() {
+        return modules;
+    }
+
+    public void setModules(Set<String> modules) {
+        this.modules = modules;
     }
 }

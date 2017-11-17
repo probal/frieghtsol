@@ -1,6 +1,6 @@
 package com.freightsol.freightsol.config;
 
-import com.freightsol.freightsol.filters.AuthenticationFilter;
+import com.freightsol.freightsol.filter.AuthenticationFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ public class FilterConfiguration {
     public FilterRegistrationBean myFilterBean() {
         final FilterRegistrationBean filterRegBean = new FilterRegistrationBean();
         filterRegBean.setFilter(new AuthenticationFilter());
-        filterRegBean.addUrlPatterns("/api/v1/private/*");
+        filterRegBean.addUrlPatterns("/api/v1/*");
         filterRegBean.setEnabled(Boolean.FALSE);
         filterRegBean.setName("Custom Authentication Filter");
         filterRegBean.setAsyncSupported(Boolean.TRUE);

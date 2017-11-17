@@ -1,8 +1,8 @@
-package com.freightsol.freightsol.controllers;
+package com.freightsol.freightsol.controller;
 
-import com.freightsol.freightsol.Utils.HttpResponseUtils;
-import com.freightsol.freightsol.models.UserAuth;
-import com.freightsol.freightsol.models.UserToken;
+import com.freightsol.freightsol.util.HttpResponseUtils;
+import com.freightsol.freightsol.model.UserAuth;
+import com.freightsol.freightsol.model.UserToken;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

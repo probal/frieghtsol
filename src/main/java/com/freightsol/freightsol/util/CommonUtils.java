@@ -1,16 +1,14 @@
-package com.freightsol.freightsol.Utils;
+package com.freightsol.freightsol.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.freightsol.freightsol.config.AppConfiguration;
-import com.freightsol.freightsol.models.UserToken;
-import io.jsonwebtoken.Jwt;
+import com.freightsol.freightsol.model.UserToken;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.security.Key;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,4 +48,5 @@ public class CommonUtils {
         return compactJws;
 
     }
+
 }

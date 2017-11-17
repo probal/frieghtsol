@@ -1,4 +1,4 @@
-package com.freightsol.freightsol.models;
+package com.freightsol.freightsol.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
