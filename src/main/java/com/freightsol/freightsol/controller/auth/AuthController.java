@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,8 +41,8 @@ public class AuthController {
 
 
     @ApiOperation(value = "Login user", response = UserToken.class)
-    @RequestMapping(value = "/doLogin", method= RequestMethod.POST)
-    public ResponseEntity<UserToken> doLogin(HttpServletResponse response, UserAccount postBody) {
+    @RequestMapping(value = "/doLogin", method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<UserToken> doLogin(HttpServletResponse response, @RequestBody UserAccount postBody) {
 
         UserAccount userAccount = authService.doLogin(postBody);
 
@@ -58,8 +59,8 @@ public class AuthController {
     }
 
     @ApiOperation(value = "Register user", response = UserToken.class)
-    @RequestMapping(value = "/register", method= RequestMethod.POST)
-    public ResponseEntity<UserToken> register(HttpServletResponse response, UserAccount postBody ) {
+    @RequestMapping(value = "/register", method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<UserToken> register(HttpServletResponse response, @RequestBody UserAccount postBody ) {
 
         UserAccount userAccount = authService.createUser(postBody);
 
