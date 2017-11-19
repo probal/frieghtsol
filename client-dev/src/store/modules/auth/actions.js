@@ -2,7 +2,8 @@ import Vue from 'vue'
 
 import {
   LOGOUT_USER,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  SIGNUP_SUCCESS
 } from './mutation-types'
 
 // import router from '../../router'
@@ -26,6 +27,25 @@ export function localLogin (store, userInfo) {
     /* saveCookie('token', token)
     store.dispatch('getUserInfo') */
     store.commit(LOGIN_SUCCESS, { token: token })
+    /* showMsg(store, 'Sign in success, welcome!', 'success')
+    router.push({ path: '/' }) */
+  }, response => {
+    console.log(response)
+    // showMsg(store, response.data.error_msg || 'Login failed')
+  })
+}
+
+export function localSignup (store, userInfo) {
+  const api = `${API_ROOT}api/v1/public/auth/register`
+  Vue.http.post(api, userInfo).then(response => {
+    console.log(response)
+    /* if (!response.ok) {
+        return showMsg(store, response.data.error_msg || 'Login failed')
+    } */
+    // const token = response.data.token
+    /* saveCookie('token', token)
+    store.dispatch('getUserInfo') */
+    store.commit(SIGNUP_SUCCESS)
     /* showMsg(store, 'Sign in success, welcome!', 'success')
     router.push({ path: '/' }) */
   }, response => {

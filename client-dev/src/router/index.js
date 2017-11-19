@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 
-import { isLogin } from '../services/auth'
+import { isLogin } from '@/services/auth'
+import lazyLoading from '@/services/lazyLoading'
 import menuModule from 'vuex-store/modules/menu'
 
 Vue.use(Router)
@@ -14,6 +15,24 @@ const router = new Router({
       name: 'HelloWorld',
       component: HelloWorld
     }, */
+    {
+      name: 'Login',
+      path: '/login',
+      component: lazyLoading('auth/login/Login'),
+      meta: {
+        default: false,
+        title: 'Login'
+      }
+    },
+    {
+      name: 'Signup',
+      path: '/signup',
+      component: lazyLoading('auth/signup/Signup'),
+      meta: {
+        default: false,
+        title: 'Signup'
+      }
+    },
     ...generateRoutesFromMenu(menuModule.state.items),
     {path: '*', redirect: { name: getDefaultRoute(menuModule.state.items).name }}
   ]

@@ -1,9 +1,9 @@
 all:
 	sudo pkill -f 'java'
 	git pull
-	npm run --prefix client build
+	npm run --prefix client-dev build
 	rm -rf src/main/resources/static/client/*
-	cp -rf client/dist/* src/main/resources/static/client
+	cp -rf client-dev/dist/* src/main/resources/static/
 	mvn clean install
 	sudo java -XX:-UseLoopPredicate -jar target/freightsol-1.0.jar
 
