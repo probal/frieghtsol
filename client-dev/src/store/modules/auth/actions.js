@@ -16,7 +16,7 @@ export function logout ({ commit }) {
 }
 
 export function localLogin (store, userInfo) {
-  const api = `${API_ROOT}api/v1/public/login/doLogin`
+  const api = `${API_ROOT}api/v1/public/auth/doLogin`
   Vue.http.post(api, userInfo).then(response => {
     console.log(response)
     /* if (!response.ok) {

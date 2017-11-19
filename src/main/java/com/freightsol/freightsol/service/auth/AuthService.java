@@ -40,7 +40,7 @@ public class AuthService {
             userAccount = modelMapper.map(userAccountEntity, UserAccount.class);
             return userAccount;
         } catch (Exception ex) {
-            throw new ResourceNotFoundException(userAccount.getEmail(), "User not found");
+            throw new ResourceNotFoundException(userAccount.getEmail(), "User not created");
         }
     }
 }
