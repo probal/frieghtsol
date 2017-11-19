@@ -5,12 +5,12 @@ import {
 } from './mutation-types'
 
 import dashboard from './items/dashboard'
-import auth from './items/auth'
+// import auth from './items/auth'
 
 const state = {
   items: [
-    dashboard,
-    auth
+    dashboard
+    // auth
   ]
 }
 

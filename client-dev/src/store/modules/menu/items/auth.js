@@ -1,7 +1,7 @@
 /**
  * Created by yarik on 18.7.17.
  */
-import lazyLoading from '../lazyLoading'
+import lazyLoading from '@/services/lazyLoading'
 
 export default {
   name: 'auth',

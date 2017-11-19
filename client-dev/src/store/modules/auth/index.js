@@ -2,7 +2,8 @@ import * as actions from './actions'
 import * as getters from './getters'
 import {
     LOGIN_SUCCESS,
-    LOGOUT_USER
+    LOGOUT_USER,
+    SIGNUP_SUCCESS
 } from './mutation-types'
 
 import { getCookie } from '@/services/auth'
@@ -20,8 +21,11 @@ const mutations = {
     state.token = getCookie('token') || null
     state.user = null
     state.token = null
-  } /* ,
-  [UPDATE_USER_SUCCESS] (state, action) {
+  },
+  [SIGNUP_SUCCESS] (state, action) {
+    console.log('success signup')
+  }
+  /* [UPDATE_USER_SUCCESS] (state, action) {
     state.user = action.user
   } */
 }
