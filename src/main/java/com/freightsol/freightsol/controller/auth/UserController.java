@@ -44,22 +44,22 @@ public class UserController {
 
     @ApiOperation(value = "Fetch user", response = UserAccount.class)
     @RequestMapping(method= RequestMethod.GET)
-    public UserAccount getuser(@RequestParam("userId") Long userId) {
+    public ResponseEntity<UserAccount> getuser(@RequestParam("userId") Long userId) {
         UserAccount userAccount = userService.getUser(userId);
-        return userAccount;
+        return new ResponseEntity(userAccount, HttpStatus.OK);
     }
 
     @ApiOperation(value = "Fetch paginated user list", response = UserAccount.class)
     @RequestMapping(value = "/list", method= RequestMethod.GET)
-    public Page<UserAccount> getAllUser(Pageable pageable) {
+    public ResponseEntity<Page<UserAccount>> getAllUser(Pageable pageable) {
         Page<UserAccount> userAccountPage = userService.getAllUser(pageable);
-        return userAccountPage;
+        return new ResponseEntity(userAccountPage, HttpStatus.OK);
     }
 
     @ApiOperation(value = "Add user role", response = UserAccount.class)
     @RequestMapping(value = "/addRole", method= RequestMethod.POST)
-    public UserAccount addRole(@RequestParam("userId") Long userId, @RequestParam("roles") String roles) {
-        return userService.assignRoles(userId, roles);
+    public ResponseEntity<UserAccount> addRole(@RequestParam("userId") Long userId, @RequestParam("roles") String roles) {
+        return new ResponseEntity(userService.assignRoles(userId, roles), HttpStatus.CREATED);
     }
 
 }
