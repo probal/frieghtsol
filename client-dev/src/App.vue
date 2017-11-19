@@ -1,11 +1,12 @@
 <template>
   <div id="app" class="app">
-    <auth-layout v-if="isAuth"></auth-layout>
-    <layout v-else></layout>
+    <layout v-if="isDashLayout"></layout>
+    <auth-layout v-else></auth-layout>
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import Layout from 'components/layout/Layout'
   import AuthLayout from './components/layout/AuthLayout'
 
@@ -16,9 +17,9 @@
       Layout
     },
     computed: {
-      isAuth () {
-        return this.$route.path.match('auth')
-      }
+      ...mapGetters({
+        isDashLayout: 'isDashLayout'
+      })
     }
   }
 </script>

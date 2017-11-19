@@ -1,4 +1,11 @@
-import * as types from '../mutation-types'
+import * as actions from './actions'
+import * as getters from './getters'
+import {
+  CLOSE_MENU,
+  TOGGLE_SIDEBAR,
+  TOGGLE_WITHOUT_ANIMATION
+
+} from './mutation-types'
 
 const state = {
   sidebar: {
@@ -27,15 +34,15 @@ const state = {
 }
 
 const mutations = {
-  [types.CLOSE_MENU] (state) {
+  [CLOSE_MENU] (state) {
     if (document.documentElement.clientWidth < 992) {
       state.sidebar.opened = false
     }
   },
-  [types.TOGGLE_SIDEBAR] (state, opened) {
+  [TOGGLE_SIDEBAR] (state, opened) {
     state.sidebar.opened = opened
   },
-  [types.TOGGLE_WITHOUT_ANIMATION] (state, value) {
+  [TOGGLE_WITHOUT_ANIMATION] (state, value) {
     state.sidebar.withoutAnimation = value
   },
   setLoading (state, isLoading) {
@@ -43,20 +50,9 @@ const mutations = {
   }
 }
 
-const actions = {
-  closeMenu ({ commit }) {
-    commit(types.CLOSE_MENU)
-  },
-  toggleSidebar ({ commit }, opened) {
-    commit(types.TOGGLE_SIDEBAR, opened)
-  },
-  isToggleWithoutAnimation ({ commit }, value) {
-    commit(types.TOGGLE_WITHOUT_ANIMATION, value)
-  }
-}
-
 export default {
   state,
   mutations,
-  actions
+  actions,
+  getters
 }

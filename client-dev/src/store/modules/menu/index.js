@@ -1,6 +1,11 @@
-import * as types from '../../mutation-types'
-import dashboard from './dashboard'
-import auth from './auth'
+import * as actions from './actions'
+import * as getters from './getters'
+import {
+  TOGGLE_EXPAND_MENU_ITEM
+} from './mutation-types'
+
+import dashboard from './items/dashboard'
+import auth from './items/auth'
 
 const state = {
   items: [
@@ -10,7 +15,7 @@ const state = {
 }
 
 const mutations = {
-  [types.TOGGLE_EXPAND_MENU_ITEM] (state, payload) {
+  [TOGGLE_EXPAND_MENU_ITEM] (state, payload) {
     let menuItem = payload.menuItem
     let expand = payload.expand
     if (menuItem.children && menuItem.meta) {
@@ -19,14 +24,9 @@ const mutations = {
   }
 }
 
-const actions = {
-  toggleExpandMenuItem ({commit}, payload) {
-    commit(types.TOGGLE_EXPAND_MENU_ITEM, payload)
-  }
-}
-
 export default {
   state,
   mutations,
-  actions
+  actions,
+  getters
 }

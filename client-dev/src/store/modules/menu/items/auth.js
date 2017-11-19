@@ -1,19 +1,20 @@
 /**
  * Created by yarik on 18.7.17.
  */
-import lazyLoading from './lazyLoading'
+import lazyLoading from '../lazyLoading'
 
 export default {
   name: 'auth',
   meta: {
     expanded: false,
     title: 'Auth',
-    iconClass: 'vuestic-icon vuestic-icon-auth'
+    iconClass: 'vuestic-icon vuestic-icon-auth',
+    notInMenu: true
   },
   children: [
     {
       name: 'Login',
-      path: '/auth/login',
+      path: '/login',
       component: lazyLoading('auth/login/Login'),
       meta: {
         default: false,
@@ -22,7 +23,7 @@ export default {
     },
     {
       name: 'Signup',
-      path: '/auth/signup',
+      path: '/signup',
       component: lazyLoading('auth/signup/Signup'),
       meta: {
         default: false,

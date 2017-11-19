@@ -2,11 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 
+import { isLogin } from '../services/auth'
 import menuModule from 'vuex-store/modules/menu'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     /* {
       path: '/',
@@ -45,3 +46,23 @@ function getDefaultRoute (menu = []) {
 
   return defaultRoute
 }
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.goTop)) {
+    window.scroll(0, 0)
+  }
+
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!isLogin()) {
+      return next({ path: '/login' })
+    }
+  }
+  if (to.matched.some(record => record.meta.requiresNotAuth)) {
+    if (isLogin()) {
+      return next({ path: '/' })
+    }
+  }
+  next()
+})
+
+export default router

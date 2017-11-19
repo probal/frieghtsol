@@ -1,22 +1,21 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createLogger from 'vuex/dist/logger'
 
 import menu from './modules/menu'
+import auth from './modules/auth'
 import app from './modules/app'
 
-import * as getters from './getters'
-
+const debug = process.env.NODE_ENV !== 'production'
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
-  strict: true,  // process.env.NODE_ENV !== 'production',
-  getters,
+export default new Vuex.Store({
+  strict: debug,
+  plugins: debug ? [createLogger()] : [],
   modules: {
     menu,
+    auth,
     app
-  },
-  state: {},
-  mutations: {}
+  }
 })
 
-export default store

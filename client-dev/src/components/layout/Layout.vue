@@ -4,7 +4,7 @@
     <sidebar></sidebar>
     <div class="content-wrap" id="content-wrap">
       <main id="content" class="content" role="main">
-        <custom-pre-loader  ref="preLoader" class="pre-loader"></custom-pre-loader>
+        <custom-pre-loader v-show="isLoading" ref="preLoader" class="pre-loader"></custom-pre-loader>
         <router-view v-show="!isLoading"></router-view>
       </main>
     </div>
