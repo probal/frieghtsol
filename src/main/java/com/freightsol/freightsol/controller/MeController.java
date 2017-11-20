@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,15 +24,11 @@ public class MeController {
     private UserAuth userAuth;
 
     @ApiOperation(value = "Test this api",response = UserToken.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully done"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource")
-    })
     @RequestMapping(method= RequestMethod.GET, produces = "application/json")
-    public @ResponseBody
-    ResponseEntity<UserToken> getMe(@RequestParam(value = "callback", required = false) String callback) throws Exception {
-
+    public
+    ResponseEntity<UserToken> getMe(@RequestParam(value = "callback", required = false) String callback) {
         UserToken userToken = userAuth.getUserToken();
-        return HttpResponseUtils.getOkResponse(callback, userToken);
+        //return HttpResponseUtils.getOkResponse(callback, userToken);
+        return new ResponseEntity<UserToken>(userAuth.getUserToken(), HttpStatus.OK);
     }
 }

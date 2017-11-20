@@ -71,10 +71,12 @@ public class AuthenticationFilter implements Filter {
                         ObjectMapper mapper = new ObjectMapper();
                         JsonNode jsonNode = mapper.readTree(claims.get("user").toString());
                         UserToken userToken = new UserToken();
+                        userToken.setUserId(jsonNode.get("userId").asLong());
                         userToken.setName(jsonNode.get("name").asText());
                         userToken.setEmail(jsonNode.get("email").asText());
                         userToken.setPhoneNumber(jsonNode.get("phoneNumber").asText());
                         userToken.setIssuedOn(jsonNode.get("issuedOn").asLong());
+                        userToken.setModules(jsonNode.get("modules").asText());
                         userAuth.setUserToken(userToken);
                     } catch (Exception e) {
                         e.printStackTrace();
