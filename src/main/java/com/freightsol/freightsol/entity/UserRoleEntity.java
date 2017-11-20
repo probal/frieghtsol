@@ -3,7 +3,6 @@ package com.freightsol.freightsol.entity;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Entity;
-import javax.persistence.Index;
 import javax.persistence.Table;
 
 /**
@@ -11,7 +10,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "UserRole")
-public class UserRoleEntity extends BaseEntity {
+public class UserRoleEntity extends AbstractEntity {
 
     @NotBlank
     private String name;

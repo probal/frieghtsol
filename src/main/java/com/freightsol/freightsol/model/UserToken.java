@@ -22,7 +22,7 @@ public class UserToken {
 
     private String phoneNumber;
 
-    private Set<String> modules;
+    private String modules;
 
     private long issuedOn;
 
@@ -38,9 +38,11 @@ public class UserToken {
     }
 
     public UserToken(UserAccount userAccount) {
+        this.userId = userAccount.getId();
         this.name = userAccount.getFullName();
         this.email = userAccount.getEmail();
         this.phoneNumber = userAccount.getMobileNumber();
+        this.modules = userAccount.getModules();
         DateTime createdOn = new DateTime();
         this.issuedOn = createdOn.getMillis();
     }
@@ -85,11 +87,11 @@ public class UserToken {
         this.userId = userId;
     }
 
-    public Set<String> getModules() {
+    public String getModules() {
         return modules;
     }
 
-    public void setModules(Set<String> modules) {
+    public void setModules(String modules) {
         this.modules = modules;
     }
 }

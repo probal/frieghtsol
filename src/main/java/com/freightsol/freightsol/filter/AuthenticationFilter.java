@@ -84,9 +84,10 @@ public class AuthenticationFilter implements Filter {
 
                     filterChain.doFilter(servletRequest, servletResponse);
                 }
-            }
+            } else {
 
-            filterChain.doFilter(servletRequest, servletResponse);
+                filterChain.doFilter(servletRequest, servletResponse);
+            }
 
         }
 

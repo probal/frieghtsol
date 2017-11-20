@@ -4,7 +4,9 @@ import com.freightsol.freightsol.model.auth.UserAccount;
 import org.hibernate.validator.constraints.NotBlank;
 import org.modelmapper.ModelMapper;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.Table;
 
 /**
  * Created by probal on 11/17/17.
@@ -15,7 +17,7 @@ import javax.persistence.*;
             @Index(name="email", columnList = "email", unique = true),
             @Index(name="fullName", columnList = "fullName")
         })
-public class UserAccountEntity extends BaseEntity {
+public class UserAccountEntity extends AbstractEntity {
 
     @NotBlank
     private String email;

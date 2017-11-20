@@ -18,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,20 +47,20 @@ public class UserController {
     @RequestMapping(method= RequestMethod.GET)
     public ResponseEntity<UserAccount> getuser(@RequestParam("userId") Long userId) {
         UserAccount userAccount = userService.getUser(userId);
-        return new ResponseEntity(userAccount, HttpStatus.OK);
+        return new ResponseEntity<UserAccount>(userAccount, HttpStatus.OK);
     }
 
     @ApiOperation(value = "Fetch paginated user list", response = UserAccount.class)
     @RequestMapping(value = "/list", method= RequestMethod.GET)
     public ResponseEntity<Page<UserAccount>> getAllUser(Pageable pageable) {
         Page<UserAccount> userAccountPage = userService.getAllUser(pageable);
-        return new ResponseEntity(userAccountPage, HttpStatus.OK);
+        return new ResponseEntity<Page<UserAccount>>(userAccountPage, HttpStatus.OK);
     }
 
     @ApiOperation(value = "Add user role", response = UserAccount.class)
     @RequestMapping(value = "/addRole", method= RequestMethod.POST)
     public ResponseEntity<UserAccount> addRole(@RequestParam("userId") Long userId, @RequestParam("roles") String roles) {
-        return new ResponseEntity(userService.assignRoles(userId, roles), HttpStatus.CREATED);
+        return new ResponseEntity<UserAccount>(userService.assignRoles(userId, roles), HttpStatus.CREATED);
     }
 
 }

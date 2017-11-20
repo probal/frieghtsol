@@ -7,7 +7,7 @@ import java.util.Date;
  * Created by probal on 11/17/17.
  */
 @MappedSuperclass
-public class BaseEntity {
+public class AbstractEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
