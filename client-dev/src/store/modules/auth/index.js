@@ -3,13 +3,14 @@ import * as getters from './getters'
 import {
     LOGIN_SUCCESS,
     LOGOUT_USER,
-    SIGNUP_SUCCESS
+    SIGNUP_SUCCESS,
+    UPDATE_USER_SUCCESS
 } from './mutation-types'
 
-import { getCookie } from '@/services/auth'
+import { getToken } from '@/services/auth'
 
 const state = {
-  token: getCookie('token') || null,
+  token: getToken() || null,
   user: null
 }
 
@@ -18,16 +19,17 @@ const mutations = {
     state.token = action.token
   },
   [LOGOUT_USER] (state, action) {
-    state.token = getCookie('token') || null
-    state.user = null
     state.token = null
+    state.user = null
   },
   [SIGNUP_SUCCESS] (state, action) {
     console.log('success signup')
-  }
-  /* [UPDATE_USER_SUCCESS] (state, action) {
+    state.token = null
+    state.user = null
+  },
+  [UPDATE_USER_SUCCESS] (state, action) {
     state.user = action.user
-  } */
+  }
 }
 
 export default {

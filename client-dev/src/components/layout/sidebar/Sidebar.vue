@@ -2,7 +2,7 @@
   <aside class="sidebar">
     <custom-scrollbar>
       <ul class="sidebar-menu">
-        <li v-for="(item, index) in menuItems" v-if="!item.notInMenu">
+        <li v-for="(item, index) in menuItems" v-if="!item.meta.notInMenu">
           <router-link :to="item.path"
                        class="sidebar-link"
                        @click="toggleMenuItem(item)"

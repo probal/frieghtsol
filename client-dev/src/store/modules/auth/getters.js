@@ -1,1 +1,1 @@
-export const isDashLayout = state => state.token
+export const isLoggedIn = state => state.token

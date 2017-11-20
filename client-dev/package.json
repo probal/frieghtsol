@@ -22,6 +22,7 @@
     "element-resize-detector": "^1.1.12",
     "font-awesome": "^4.7.0",
     "kewler": "^1.0.8",
+    "local-storage": "^1.4.2",
     "universal-cookie": "^2.1.0",
     "vee-validate": "^2.0.0-rc.21",
     "vue": "^2.5.2",

@@ -1,55 +1,51 @@
-import Vue from 'vue'
+import { AuthResource } from '@/api/resources'
 
 import {
   LOGOUT_USER,
   LOGIN_SUCCESS,
-  SIGNUP_SUCCESS
+  SIGNUP_SUCCESS,
+  UPDATE_USER_SUCCESS
 } from './mutation-types'
+import { signOut, getToken, setMe, removeMe } from '@/services/auth'
 
-// import router from '../../router'
-import { signOut } from '@/services/auth'
-import { API_ROOT } from '@/config.js'
+import router from '@/router'
 
 export function logout ({ commit }) {
   signOut()
+  removeMe()
   commit(LOGOUT_USER)
-  window.location.pathname = '/'
+  router.push({ path: '/login' })
 }
 
 export function localLogin (store, userInfo) {
-  const api = `${API_ROOT}api/v1/public/auth/doLogin`
-  Vue.http.post(api, userInfo).then(response => {
+  AuthResource.save({ id: 'doLogin' }, userInfo).then(response => {
     console.log(response)
-    /* if (!response.ok) {
-        return showMsg(store, response.data.error_msg || 'Login failed')
-    } */
-    const token = response.data.token
-    /* saveCookie('token', token)
-    store.dispatch('getUserInfo') */
-    store.commit(LOGIN_SUCCESS, { token: token })
-    /* showMsg(store, 'Sign in success, welcome!', 'success')
-    router.push({ path: '/' }) */
+    if (!response.ok) {
+      return // showMsg(store, response.data.error_msg || 'Login failed')
+    }
+    setMe(response.data)
+
+    store.commit(LOGIN_SUCCESS, {token: getToken()})
+    store.commit(UPDATE_USER_SUCCESS, { user: response.data })
+    // showMsg(store, 'Sign in success, welcome!', 'success')
+    router.push({ path: '/' })
   }, response => {
-    console.log(response)
+    console.log('error', response)
     // showMsg(store, response.data.error_msg || 'Login failed')
   })
 }
 
 export function localSignup (store, userInfo) {
-  const api = `${API_ROOT}api/v1/public/auth/register`
-  Vue.http.post(api, userInfo).then(response => {
+  AuthResource.save({ id: 'register' }, userInfo).then(response => {
     console.log(response)
-    /* if (!response.ok) {
-        return showMsg(store, response.data.error_msg || 'Login failed')
-    } */
-    // const token = response.data.token
-    /* saveCookie('token', token)
-    store.dispatch('getUserInfo') */
+    if (!response.ok) {
+      return // showMsg(store, response.data.error_msg || 'Login failed')
+    }
     store.commit(SIGNUP_SUCCESS)
-    /* showMsg(store, 'Sign in success, welcome!', 'success')
-    router.push({ path: '/' }) */
+    // showMsg(store, 'Sign in success, welcome!', 'success')
+    router.push({ path: '/login' })
   }, response => {
-    console.log(response)
+    console.log('error', response)
     // showMsg(store, response.data.error_msg || 'Login failed')
   })
 }

@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="app">
-    <layout v-if="isDashLayout"></layout>
+    <layout v-if="isLoggedIn"></layout>
     <auth-layout v-else></auth-layout>
   </div>
 </template>
@@ -17,9 +17,9 @@
       Layout
     },
     computed: {
-      ...mapGetters({
-        isDashLayout: 'isDashLayout'
-      })
+      ...mapGetters([
+        'isLoggedIn'
+      ])
     }
   }
 </script>

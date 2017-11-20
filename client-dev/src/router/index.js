@@ -1,38 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import HelloWorld from '@/components/HelloWorld'
 
 import { isLogin } from '@/services/auth'
-import lazyLoading from '@/services/lazyLoading'
 import menuModule from 'vuex-store/modules/menu'
 
 Vue.use(Router)
 
 const router = new Router({
   routes: [
-    /* {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }, */
-    {
-      name: 'Login',
-      path: '/login',
-      component: lazyLoading('auth/login/Login'),
-      meta: {
-        default: false,
-        title: 'Login'
-      }
-    },
-    {
-      name: 'Signup',
-      path: '/signup',
-      component: lazyLoading('auth/signup/Signup'),
-      meta: {
-        default: false,
-        title: 'Signup'
-      }
-    },
     ...generateRoutesFromMenu(menuModule.state.items),
     {path: '*', redirect: { name: getDefaultRoute(menuModule.state.items).name }}
   ]
@@ -67,18 +42,18 @@ function getDefaultRoute (menu = []) {
 }
 
 router.beforeEach((to, from, next) => {
+  console.log(to, from)
   if (to.matched.some(record => record.meta.goTop)) {
     window.scroll(0, 0)
   }
 
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!isLogin()) {
-      return next({ path: '/login' })
-    }
-  }
   if (to.matched.some(record => record.meta.requiresNotAuth)) {
     if (isLogin()) {
       return next({ path: '/' })
+    }
+  } else {
+    if (!isLogin()) {
+      return next({ path: '/login' })
     }
   }
   next()

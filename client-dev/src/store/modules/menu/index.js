@@ -4,13 +4,15 @@ import {
   TOGGLE_EXPAND_MENU_ITEM
 } from './mutation-types'
 
+import common from './items/common'
 import dashboard from './items/dashboard'
-// import auth from './items/auth'
+import auth from './items/auth'
 
 const state = {
   items: [
-    dashboard
-    // auth
+    common,
+    dashboard,
+    auth
   ]
 }
 

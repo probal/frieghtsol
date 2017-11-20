@@ -65,7 +65,7 @@
               <a class="plain-link" href="#">My Profile</a>
             </div>
             <div class="dropdown-item plain-link-item">
-              <a class="plain-link" href="#">Logout</a>
+              <a class="plain-link" href="#" @click.prevent="logout">Logout</a>
             </div>
           </div>
         </div>
@@ -93,7 +93,8 @@
       ...mapActions([
         'closeMenu',
         'toggleSidebar',
-        'isToggleWithoutAnimation'
+        'isToggleWithoutAnimation',
+        'logout'
       ])
     }
   }

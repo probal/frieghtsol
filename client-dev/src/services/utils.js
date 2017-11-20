@@ -1,4 +1,20 @@
 export default {
+  json2b64 (json) {
+    try {
+      let str = JSON.stringify(json)
+      return btoa(str)
+    } catch (e) {
+      return ''
+    }
+  },
+  b642json (str) {
+    try {
+      let jsonStr = atob(str)
+      return JSON.parse(jsonStr)
+    } catch (e) {
+      return null
+    }
+  },
   hex2rgb (hex, opacity) {
     hex = (hex + '').trim()
 

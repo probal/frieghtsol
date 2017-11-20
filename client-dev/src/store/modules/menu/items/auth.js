@@ -18,7 +18,8 @@ export default {
       component: lazyLoading('auth/login/Login'),
       meta: {
         default: false,
-        title: 'Login'
+        title: 'Login',
+        requiresNotAuth: true
       }
     },
     {
@@ -27,7 +28,8 @@ export default {
       component: lazyLoading('auth/signup/Signup'),
       meta: {
         default: false,
-        title: 'Signup'
+        title: 'Signup',
+        requiresNotAuth: true
       }
     }
   ]
