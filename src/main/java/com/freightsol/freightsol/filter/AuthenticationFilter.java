@@ -2,7 +2,7 @@ package com.freightsol.freightsol.filter;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.freightsol.freightsol.config.AppConfiguration;
+import com.freightsol.freightsol.config.ApplicationConfig;
 import com.freightsol.freightsol.model.UserAuth;
 import com.freightsol.freightsol.model.UserToken;
 import io.jsonwebtoken.Claims;
@@ -27,7 +27,7 @@ import java.io.IOException;
 public class AuthenticationFilter implements Filter {
 
     @Autowired
-    AppConfiguration appConfiguration;
+    ApplicationConfig applicationConfig;
 
     @Autowired
     UserAuth userAuth;
@@ -67,7 +67,7 @@ public class AuthenticationFilter implements Filter {
                     }
 
                     try {
-                        Claims claims = Jwts.parser().setSigningKey(appConfiguration.getJwtSecret().getBytes("UTF-8")).parseClaimsJws(jwttoken).getBody();
+                        Claims claims = Jwts.parser().setSigningKey(applicationConfig.getJwtSecret().getBytes("UTF-8")).parseClaimsJws(jwttoken).getBody();
                         ObjectMapper mapper = new ObjectMapper();
                         JsonNode jsonNode = mapper.readTree(claims.get("user").toString());
                         UserToken userToken = new UserToken();

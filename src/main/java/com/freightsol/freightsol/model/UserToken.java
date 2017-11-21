@@ -5,8 +5,6 @@ import org.joda.time.DateTime;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
-import java.util.Set;
-
 /**
  * Created by probal on 10/10/17.
  */
@@ -27,14 +25,6 @@ public class UserToken {
     private long issuedOn;
 
     public UserToken() {
-    }
-
-    public UserToken(PersonModel pm) {
-        this.name = pm.getName();
-        this.email = pm.getEmail();
-        this.phoneNumber = "1234566";
-        DateTime createdOn = new DateTime();
-        this.issuedOn = createdOn.getMillis();
     }
 
     public UserToken(UserAccount userAccount) {

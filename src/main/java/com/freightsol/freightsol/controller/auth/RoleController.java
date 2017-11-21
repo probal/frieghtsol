@@ -6,6 +6,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +27,7 @@ public class RoleController {
     @Qualifier("userService")
     UserService userService;
 
+    @CacheEvict(value = "roles", allEntries = true)
     @ApiOperation(value = "Create role", response = UserRole.class)
     @RequestMapping(value = "/add", method= RequestMethod.POST)
     public UserRole createRole(@RequestBody UserRole postBody ) {
@@ -32,6 +35,7 @@ public class RoleController {
         return userRole;
     }
 
+    @Cacheable("roles")
     @ApiOperation(value = "Fetch Role list", response = UserRole.class)
     @RequestMapping(value = "/list", method= RequestMethod.GET)
     public List<UserRole> getAllRoles() {

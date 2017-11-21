@@ -1,13 +1,7 @@
 package com.freightsol.freightsol.controller.auth;
 
-import com.freightsol.freightsol.config.AppConfiguration;
-import com.freightsol.freightsol.exception.ResourceNotFoundException;
-import com.freightsol.freightsol.model.UserToken;
 import com.freightsol.freightsol.model.auth.UserAccount;
-import com.freightsol.freightsol.service.MailSenderService;
-import com.freightsol.freightsol.service.auth.AuthService;
 import com.freightsol.freightsol.service.auth.UserService;
-import com.freightsol.freightsol.util.CommonUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -15,18 +9,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /**
  * Created by probal on 11/17/17.

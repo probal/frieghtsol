@@ -1,9 +1,9 @@
 package com.freightsol.freightsol.controller.auth;
 
-import com.freightsol.freightsol.config.AppConfiguration;
+import com.freightsol.freightsol.config.ApplicationConfig;
 import com.freightsol.freightsol.model.UserToken;
 import com.freightsol.freightsol.model.auth.UserAccount;
-import com.freightsol.freightsol.service.MailSenderService;
+import com.freightsol.freightsol.service.core.MailSenderService;
 import com.freightsol.freightsol.service.auth.AuthService;
 import com.freightsol.freightsol.util.CommonUtils;
 import io.swagger.annotations.Api;
@@ -30,7 +30,7 @@ public class AuthController {
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @Autowired
-    AppConfiguration appConfiguration;
+    ApplicationConfig applicationConfig;
 
     @Autowired
     MailSenderService mailSenderService;
@@ -47,9 +47,8 @@ public class AuthController {
         UserAccount userAccount = authService.doLogin(postBody);
 
         try {
-            mailSenderService.sendLoginAlert(userAccount.getEmail(), userAccount.getFullName());
             UserToken userToken = new UserToken(userAccount);
-            CommonUtils.setUserToken(response, userToken, appConfiguration);
+            CommonUtils.setUserToken(response, userToken, applicationConfig);
             logger.info("{} logged in...", userAccount.getEmail());
             return new ResponseEntity<UserToken>(userToken, HttpStatus.OK);
         } catch (Exception ex) {
@@ -60,19 +59,16 @@ public class AuthController {
 
     @ApiOperation(value = "Register user", response = UserToken.class)
     @RequestMapping(value = "/register", method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserToken> register(HttpServletResponse response, @RequestBody UserAccount postBody ) {
+    public ResponseEntity<?> register(HttpServletResponse response, @RequestBody UserAccount postBody ) {
 
         UserAccount userAccount = authService.createUser(postBody);
 
         try {
-            mailSenderService.sendLoginAlert(userAccount.getEmail(), userAccount.getFullName());
-            UserToken userToken = new UserToken(userAccount);
-            CommonUtils.setUserToken(response, userToken, appConfiguration);
-            logger.info("{} logged in...", userAccount.getEmail());
-            return new ResponseEntity<UserToken>(userToken, HttpStatus.OK);
+            logger.info("{} registered fresh ...", userAccount.getEmail());
+            return new ResponseEntity<>("User Created", HttpStatus.OK);
         } catch (Exception ex) {
             System.out.println("Exceptoion occured");
         }
-        return new ResponseEntity<UserToken>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
     }
 }

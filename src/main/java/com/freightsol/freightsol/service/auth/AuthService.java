@@ -4,6 +4,7 @@ import com.freightsol.freightsol.entity.UserAccountEntity;
 import com.freightsol.freightsol.exception.ResourceNotFoundException;
 import com.freightsol.freightsol.model.auth.UserAccount;
 import com.freightsol.freightsol.repository.auth.UserAccountRepository;
+import com.freightsol.freightsol.service.core.MailSenderService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,14 +20,20 @@ public class AuthService {
     @Autowired
     UserAccountRepository authRepository;
 
+    @Autowired
+    MailSenderService mailSenderService;
+
     public UserAccount doLogin(UserAccount userAccount) {
+        //TODO: use optional
         try {
             UserAccountEntity userAccountEntity = authRepository.findByEmailAndPassword(userAccount.getEmail(), userAccount.getPassword());
             if (userAccountEntity == null) {
                 throw new ResourceNotFoundException(userAccount.getEmail(), "User not found");
             }
             ModelMapper modelMapper = new ModelMapper();
-            return modelMapper.map(userAccountEntity, UserAccount.class);
+            userAccount = modelMapper.map(userAccountEntity, UserAccount.class);
+            mailSenderService.sendLoginMail(userAccount);
+            return userAccount;
         } catch(Exception ex) {
             throw new ResourceNotFoundException(userAccount.getEmail(), "User not found");
         }
@@ -38,6 +45,7 @@ public class AuthService {
             UserAccountEntity userAccountEntity = modelMapper.map(userAccount, UserAccountEntity.class);
             userAccountEntity = authRepository.save(userAccountEntity);
             userAccount = modelMapper.map(userAccountEntity, UserAccount.class);
+            mailSenderService.sendRegistrationMail(userAccount);
             return userAccount;
         } catch (Exception ex) {
             throw new ResourceNotFoundException(userAccount.getEmail(), "User not created");

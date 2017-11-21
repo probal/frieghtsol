@@ -2,7 +2,7 @@ package com.freightsol.freightsol.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.freightsol.freightsol.config.AppConfiguration;
+import com.freightsol.freightsol.config.ApplicationConfig;
 import com.freightsol.freightsol.model.UserToken;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -27,7 +27,7 @@ public class CommonUtils {
         return null;
     }
 
-    public static void setUserToken(HttpServletResponse servletResponse, UserToken userToken, AppConfiguration configuration) throws  Exception{
+    public static void setUserToken(HttpServletResponse servletResponse, UserToken userToken, ApplicationConfig configuration) throws  Exception{
 
         String serializedJwe = CommonUtils.getSerializedUserToken(userToken, configuration);
         Cookie tokenCookie = new Cookie("jwttoken", serializedJwe);
@@ -37,7 +37,7 @@ public class CommonUtils {
         servletResponse.addCookie(tokenCookie);
     }
 
-    public static String getSerializedUserToken(UserToken userToken, AppConfiguration configuration) throws  Exception{
+    public static String getSerializedUserToken(UserToken userToken, ApplicationConfig configuration) throws  Exception{
         String claim = CommonUtils.toJson(userToken);
         Map<String, Object> map = new HashMap<>();
         map.put("user", claim);

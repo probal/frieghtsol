@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConfigurationProperties(prefix="app")
-public class AppConfiguration {
+public class ApplicationConfig {
 
     @Value("${appUrl}")
     private String appUrl;
