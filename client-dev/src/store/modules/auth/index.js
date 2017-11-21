@@ -7,11 +7,11 @@ import {
     UPDATE_USER_SUCCESS
 } from './mutation-types'
 
-import { getToken } from '@/services/auth'
+import { getToken, getMe } from '@/services/auth'
 
 const state = {
   token: getToken() || null,
-  user: null
+  user: getMe() || null
 }
 
 const mutations = {

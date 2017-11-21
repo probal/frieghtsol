@@ -7,12 +7,14 @@ import {
 import common from './items/common'
 import dashboard from './items/dashboard'
 import auth from './items/auth'
+import myprofile from './items/myprofile'
 
 const state = {
   items: [
     common,
     dashboard,
-    auth
+    auth,
+    myprofile
   ]
 }
 

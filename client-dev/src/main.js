@@ -8,7 +8,7 @@ import store from './store'
 import router from './router'
 import { sync } from 'vuex-router-sync'
 import { isLogin } from '@/services/auth'
-import CustomPlugin from 'src/components/custom-components-plugins'
+import CustomPlugin from 'src/components/custom-components'
 
 
 Vue.config.productionTip = false

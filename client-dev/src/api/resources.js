@@ -24,4 +24,21 @@ Vue.http.interceptors.push((request, next) => {
   })
 })
 
-export const AuthResource = Vue.resource(`${API_ROOT}public/auth{/id}`)
+export function Http (resource) {
+  return new Promise((resolve, reject) => {
+    resource.then(response => {
+      console.log(response)
+      if (!response.ok) {
+        reject(response.data)
+        return // showMsg(store, response.data.error_msg || 'Login failed')
+      }
+      resolve(response.data)
+    }, response => {
+      console.log(response)
+      reject(response.data)
+      // showMsg(store, response.data.error_msg || 'Login failed')
+    })
+  })
+}
+
+export const AuthResource = Vue.resource(`${API_ROOT}{state}/auth{/id}`)

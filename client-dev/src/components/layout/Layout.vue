@@ -17,7 +17,7 @@
   import Navbar from './navbar/Navbar'
   import Sidebar from './sidebar/Sidebar'
   import Resize from 'directives/ResizeHandler'
-  import CustomPreLoader from '../custom-components-plugins/custom-preloader/CustomPreLoader.vue'
+  import CustomPreLoader from '../custom-components/custom-preloader/CustomPreLoader.vue'
 
   export default {
     name: 'layout',

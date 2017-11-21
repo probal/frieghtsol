@@ -20,13 +20,8 @@
 </template>
 
 <script>
-  import CustomAlert from '../custom-components-plugins/custom-alert/CustomAlert'
-
   export default {
-    name: 'dashboard',
-    components: {
-      CustomAlert
-    }
+    name: 'dashboard'
   }
 </script>
 

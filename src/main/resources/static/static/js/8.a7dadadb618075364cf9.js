@@ -1,0 +1,2 @@
+webpackJsonp([8],{EvVS:function(e,n,r){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var t={name:"change-password"},s=function(){var e=this,n=e.$createElement;return(e._self._c||n)("form",[e._v("Change Password")])},a=[],l={render:s,staticRenderFns:a},u=l,c=r("VU/8"),o=c(t,u,!1,null,null,null);n.default=o.exports}});
+//# sourceMappingURL=8.a7dadadb618075364cf9.js.map

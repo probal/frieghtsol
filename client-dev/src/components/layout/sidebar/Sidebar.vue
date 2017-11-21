@@ -37,7 +37,7 @@
 <script>
   import { mapGetters, mapActions } from 'vuex'
   import Expanding from '../../../../node_modules/vue-bulma-expanding/src/Expanding'
-  import CustomScrollbar from '../../custom-components-plugins/custom-scrollbar/CustomScrollbar'
+  import CustomScrollbar from '../../custom-components/custom-scrollbar/CustomScrollbar'
 
   export default {
     name: 'sidebar',

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar app-navbar navbar-toggleable-md">
+  <nav class="navbar app-navbar navbar-expand-md">
     <div class="navbar-brand-container d-flex align-items-center justify-content-start">
       <a class="navbar-brand" href="#">
         <i class="i-vuestic"></i>
@@ -56,13 +56,15 @@
       <div class="col nav-item dropdown navbar-dropdown d-flex align-items-center justify-content-center" v-dropdown>
         <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="#" @click.prevent="closeMenu">
           <span class="avatar-container">
-            <img src="http://i.imgur.com/nfa5itq.png" />
+            <v-gravatar :email="userProfile.email" default-img="mm" />
           </span>
         </a>
         <div class="dropdown-menu last">
           <div class="dropdown-menu-content">
             <div class="dropdown-item plain-link-item">
-              <a class="plain-link" href="#">My Profile</a>
+              <router-link to="/myprofile" class="plain-link">
+                  My Profile
+              </router-link>
             </div>
             <div class="dropdown-item plain-link-item">
               <a class="plain-link" href="#" @click.prevent="logout">Logout</a>
@@ -75,20 +77,31 @@
 </template>
 
 <script>
+  import VGravatar from 'vue-gravatar'
   import { mapGetters, mapActions } from 'vuex'
   import Dropdown from 'directives/Dropdown'
 
   export default {
     name: 'navbar',
 
+    components: {
+      VGravatar
+    },
+
     directives: {
       dropdown: Dropdown
     },
 
-    computed: mapGetters([
-      'sidebarOpened',
-      'toggleWithoutAnimation'
-    ]),
+    computed: {
+      ...mapGetters([
+        'sidebarOpened',
+        'toggleWithoutAnimation',
+        'loggedInUser'
+      ]),
+      userProfile: function () {
+        return this.loggedInUser ? this.loggedInUser : {}
+      }
+    },
     methods: {
       ...mapActions([
         'closeMenu',

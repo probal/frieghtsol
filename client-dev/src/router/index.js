@@ -42,7 +42,6 @@ function getDefaultRoute (menu = []) {
 }
 
 router.beforeEach((to, from, next) => {
-  console.log(to, from)
   if (to.matched.some(record => record.meta.goTop)) {
     window.scroll(0, 0)
   }

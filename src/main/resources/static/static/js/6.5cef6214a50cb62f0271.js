@@ -1,0 +1,2 @@
+webpackJsonp([6],{hVe5:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={name:"profile-settings"},l=function(){var e=this,t=e.$createElement;return(e._self._c||t)("form",[e._v("Settings")])},s=[],u={render:l,staticRenderFns:s},i=u,a=n("VU/8"),c=a(r,i,!1,null,null,null);t.default=c.exports}});
+//# sourceMappingURL=6.5cef6214a50cb62f0271.js.map

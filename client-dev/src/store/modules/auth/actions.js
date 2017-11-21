@@ -1,4 +1,4 @@
-import { AuthResource } from '@/api/resources'
+import { Http, AuthResource } from '@/api/resources'
 
 import {
   LOGOUT_USER,
@@ -18,34 +18,26 @@ export function logout ({ commit }) {
 }
 
 export function localLogin (store, userInfo) {
-  AuthResource.save({ id: 'doLogin' }, userInfo).then(response => {
-    console.log(response)
-    if (!response.ok) {
-      return // showMsg(store, response.data.error_msg || 'Login failed')
+  Http(AuthResource.save({ state: 'public', id: 'doLogin' }, userInfo)).then(response => {
+    const token = getToken()
+    if (token) {
+      setMe(response)
+      store.commit(LOGIN_SUCCESS, {token: token})
+      store.commit(UPDATE_USER_SUCCESS, { user: response })
+      // showMsg(store, 'Sign in success, welcome!', 'success')
+      router.push({ path: '/' })
     }
-    setMe(response.data)
-
-    store.commit(LOGIN_SUCCESS, {token: getToken()})
-    store.commit(UPDATE_USER_SUCCESS, { user: response.data })
-    // showMsg(store, 'Sign in success, welcome!', 'success')
-    router.push({ path: '/' })
   }, response => {
-    console.log('error', response)
     // showMsg(store, response.data.error_msg || 'Login failed')
   })
 }
 
 export function localSignup (store, userInfo) {
-  AuthResource.save({ id: 'register' }, userInfo).then(response => {
-    console.log(response)
-    if (!response.ok) {
-      return // showMsg(store, response.data.error_msg || 'Login failed')
-    }
+  Http(AuthResource.save({ state: 'public', id: 'register' }, userInfo)).then(response => {
     store.commit(SIGNUP_SUCCESS)
     // showMsg(store, 'Sign in success, welcome!', 'success')
     router.push({ path: '/login' })
   }, response => {
-    console.log('error', response)
     // showMsg(store, response.data.error_msg || 'Login failed')
   })
 }
