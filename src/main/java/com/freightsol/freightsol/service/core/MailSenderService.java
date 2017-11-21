@@ -67,7 +67,7 @@ public class MailSenderService {
 
     public void sendLoginMail(UserAccount userAccount) {
         try {
-            Map model = new HashMap<>();
+            Map<String, String> model = new HashMap<>();
             model.put("fullName", userAccount.getFullName());
             model.put("location", "Dhaka");
             model.put("signature", "http://cefalo.com");

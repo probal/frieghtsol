@@ -1,14 +1,10 @@
 package com.freightsol.freightsol.model.auth;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.freightsol.freightsol.model.auth.UserAccount;
-import org.joda.time.DateTime;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 /**
  * Created by probal on 10/10/17.

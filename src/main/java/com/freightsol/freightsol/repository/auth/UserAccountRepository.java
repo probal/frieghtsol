@@ -1,6 +1,5 @@
 package com.freightsol.freightsol.repository.auth;
 
-import com.freightsol.freightsol.db.entities.Person;
 import com.freightsol.freightsol.entity.UserAccountEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

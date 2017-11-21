@@ -7,7 +7,6 @@ import com.freightsol.freightsol.model.auth.UserAuth;
 import com.freightsol.freightsol.model.auth.UserToken;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -18,10 +17,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 /**
  * Created by probal on 10/10/17.
