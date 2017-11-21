@@ -45,7 +45,7 @@ public class AuthService {
             UserAccountEntity userAccountEntity = modelMapper.map(userAccount, UserAccountEntity.class);
             userAccountEntity = authRepository.save(userAccountEntity);
             userAccount = modelMapper.map(userAccountEntity, UserAccount.class);
-            mailSenderService.sendRegistrationMail(userAccount);
+            //mailSenderService.sendRegistrationMail(userAccount);
             return userAccount;
         } catch (Exception ex) {
             throw new ResourceNotFoundException(userAccount.getEmail(), "User not created");

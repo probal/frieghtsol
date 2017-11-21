@@ -1,7 +1,7 @@
 package com.freightsol.freightsol.controller.auth;
 
-import com.freightsol.freightsol.model.UserAuth;
-import com.freightsol.freightsol.model.UserToken;
+import com.freightsol.freightsol.model.auth.UserAuth;
+import com.freightsol.freightsol.model.auth.UserToken;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.freightsol.freightsol.controller.auth;
 
 import com.freightsol.freightsol.config.ApplicationConfig;
-import com.freightsol.freightsol.model.UserToken;
+import com.freightsol.freightsol.model.auth.UserToken;
 import com.freightsol.freightsol.model.auth.UserAccount;
 import com.freightsol.freightsol.service.core.MailSenderService;
 import com.freightsol.freightsol.service.auth.AuthService;

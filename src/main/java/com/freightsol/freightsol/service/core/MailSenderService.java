@@ -1,10 +1,9 @@
 package com.freightsol.freightsol.service.core;
 
-import com.freightsol.freightsol.model.Mail;
+import com.freightsol.freightsol.model.core.Mail;
 import com.freightsol.freightsol.model.auth.UserAccount;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-import freemarker.template.TemplateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,7 @@ import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 

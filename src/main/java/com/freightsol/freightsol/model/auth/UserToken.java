@@ -1,9 +1,14 @@
-package com.freightsol.freightsol.model;
+package com.freightsol.freightsol.model.auth;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.freightsol.freightsol.model.auth.UserAccount;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * Created by probal on 10/10/17.
@@ -22,7 +27,7 @@ public class UserToken {
 
     private String modules;
 
-    private long issuedOn;
+    private String issuedOn;
 
     public UserToken() {
     }
@@ -33,8 +38,8 @@ public class UserToken {
         this.email = userAccount.getEmail();
         this.phoneNumber = userAccount.getMobileNumber();
         this.modules = userAccount.getModules();
-        DateTime createdOn = new DateTime();
-        this.issuedOn = createdOn.getMillis();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        this.issuedOn = LocalDateTime.now().format(formatter);
     }
 
     public String getName() {
@@ -61,11 +66,11 @@ public class UserToken {
         this.phoneNumber = phoneNumber;
     }
 
-    public long getIssuedOn() {
+    public String getIssuedOn() {
         return issuedOn;
     }
 
-    public void setIssuedOn(long issuedOn) {
+    public void setIssuedOn(String issuedOn) {
         this.issuedOn = issuedOn;
     }
 

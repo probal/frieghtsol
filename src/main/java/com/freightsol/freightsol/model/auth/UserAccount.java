@@ -1,5 +1,7 @@
 package com.freightsol.freightsol.model.auth;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /**
@@ -19,8 +21,10 @@ public class UserAccount {
 
     private String modules;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createdDate;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date modifiedDate;
 
     private Long createdBy;

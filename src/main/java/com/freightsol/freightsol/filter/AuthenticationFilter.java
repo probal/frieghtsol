@@ -3,10 +3,11 @@ package com.freightsol.freightsol.filter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.freightsol.freightsol.config.ApplicationConfig;
-import com.freightsol.freightsol.model.UserAuth;
-import com.freightsol.freightsol.model.UserToken;
+import com.freightsol.freightsol.model.auth.UserAuth;
+import com.freightsol.freightsol.model.auth.UserToken;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -17,6 +18,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * Created by probal on 10/10/17.
@@ -75,7 +80,7 @@ public class AuthenticationFilter implements Filter {
                         userToken.setName(jsonNode.get("name").asText());
                         userToken.setEmail(jsonNode.get("email").asText());
                         userToken.setPhoneNumber(jsonNode.get("phoneNumber").asText());
-                        userToken.setIssuedOn(jsonNode.get("issuedOn").asLong());
+                        userToken.setIssuedOn(jsonNode.get("issuedOn").asText());
                         userToken.setModules(jsonNode.get("modules").asText());
                         userAuth.setUserToken(userToken);
                     } catch (Exception e) {

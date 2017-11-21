@@ -1,4 +1,4 @@
-package com.freightsol.freightsol.model;
+package com.freightsol.freightsol.model.core;
 
 import java.util.List;
 import java.util.Map;

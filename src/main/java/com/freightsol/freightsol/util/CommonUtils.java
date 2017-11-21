@@ -3,7 +3,7 @@ package com.freightsol.freightsol.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.freightsol.freightsol.config.ApplicationConfig;
-import com.freightsol.freightsol.model.UserToken;
+import com.freightsol.freightsol.model.auth.UserToken;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
