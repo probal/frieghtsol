@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Created by probal on 11/17/17.
  */
@@ -44,6 +46,15 @@ public class UserController {
     public ResponseEntity<Page<UserAccount>> getAllUser(Pageable pageable) {
         Page<UserAccount> userAccountPage = userService.getAllUser(pageable);
         return new ResponseEntity<Page<UserAccount>>(userAccountPage, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/userListReport", method = RequestMethod.GET, produces = "application/pdf")
+    public void getEmployeeReportPdf(final HttpServletResponse response) {
+        /*EmployeeReport report = new EmployeeReport(employeeRepository.findAll());
+        JasperPrint jp = report.getReport();
+
+        reportService.writePdfReport(jp, response, "employeeReport");*/
+        return;
     }
 
     @ApiOperation(value = "Add user role", response = UserAccount.class)

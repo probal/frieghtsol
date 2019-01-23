@@ -42,4 +42,6 @@ public class RoleController {
         List<UserRole> roleList = userService.getAllRoles();
         return roleList;
     }
+
+
 }
